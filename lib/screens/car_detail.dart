@@ -1,5 +1,9 @@
 import 'package:car_app/models/car.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ionicons/ionicons.dart';
+
+import '../widgets/features_card.dart';
 
 class CarDetailScreen extends StatefulWidget {
   const CarDetailScreen({super.key, required this.car});
@@ -10,181 +14,119 @@ class CarDetailScreen extends StatefulWidget {
 }
 
 class _CarDetailScreenState extends State<CarDetailScreen> {
-  int imageIndex = 0;
-
-  void setImageIndex(int index) {
-    setState(() {
-      imageIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: const Color.fromRGBO(34, 38, 43, 1),
         leading: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            width: 30.0,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30), color: Colors.white60),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton.filled(
+            style:
+                IconButton.styleFrom(backgroundColor: const Color(0xFF383c40)),
+            icon: const Icon(
+              Ionicons.arrow_back,
+              color: Colors.white,
+              size: 18,
             ),
+            onPressed: () {},
           ),
         ),
         title: const Text(
           "Car Details",
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          style: TextStyle(color: Colors.white, fontSize: 16),
         ),
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              width: 50,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.white60),
-              child: Center(
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.heart_broken, color: Colors.black),
-                ),
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton.filled(
+              style: IconButton.styleFrom(
+                  backgroundColor: const Color(0xFF383c40)),
+              icon: const Icon(
+                Ionicons.heart,
+                color: Colors.white,
+                size: 18,
               ),
+              onPressed: () {},
             ),
-          ),
+          )
         ],
       ),
-      extendBodyBehindAppBar: true,
-      body: Stack(
-        children: [
-          ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.5,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(30.0),
-                      bottomRight: Radius.circular(30.0)),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        "https://www.autocar.co.uk/sites/autocar.co.uk/files/images/car-reviews/first-drives/legacy/99-best-luxury-cars-2023-bmw-i7-lead.jpg"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 220,
-                      child: Text(widget.car.carsClass,
-                          style: TextStyle(
-                              fontSize: 17.0, color: Colors.grey[700]),
-                          overflow: TextOverflow.ellipsis),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0),
-                child: Row(
-                  children: [
-                    Text(
-                      widget.car.make + " " + widget.car.model,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  children: [
-                    Text(
-                      '120 ₼',
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              const Divider(
-                thickness: 2.0,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'Descriptions',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(34, 38, 43, 1),
+        ),
+        child: Column(children: [
+          Image.network(
+            "https://di-uploads-pod5.dealerinspire.com/waltersmercedesbenz/uploads/2020/08/2021_Mercedes-Maybach_GLS-e1599148092349.png",
+            height: 225,
+            fit: BoxFit.fitWidth,
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              decoration: const BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: SizedBox(
-                      width: 360,
-                      child: Text(
-                        widget.car.cylinders.toString(),
-                        style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.grey),
-                        maxLines: 4,
-                        overflow: TextOverflow.ellipsis,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Tesla Model 3"),
+                      Row(
+                        children: [Icon(Icons.star), Text("4.5")],
+                      )
+                    ],
+                  ),
+                  Text(
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+                      style: TextStyle(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      textAlign: TextAlign.justify),
+                  Text(
+                    'Features',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      FeaturesCard(
+                        text: 'Total Capacity',
+                        text2: '6 Seats',
+                        icon: Icon(Icons.search),
                       ),
-                    ),
+                      FeaturesCard(
+                        text: 'Highest Speed',
+                        text2: '200 KM/H',
+                        icon: Icon(Ionicons.speedometer_outline),
+                      ),
+                      FeaturesCard(
+                        text: 'Engine Output',
+                        text2: '500 HP',
+                        icon: FaIcon(FontAwesomeIcons.horse),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                height: 120.0,
-                width: double.infinity,
-                color: Colors.grey[200],
-                child: Padding(
-                  padding: const EdgeInsets.all(35.0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(21, 153, 84, 1),
-                    ),
-                    child: const Text(
-                      'BUY NOW',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+          )
+        ]),
+      ),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        margin: const EdgeInsets.all(20), 
+        child: const Row(
+          children: [
+            
+          ],
+        ),
       ),
     );
   }

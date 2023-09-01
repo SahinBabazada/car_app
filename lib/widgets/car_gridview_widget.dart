@@ -10,8 +10,12 @@ class CarGridViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.all(24.0),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40))
+      ),
       child: Column(
         children: [
           Row(
@@ -19,15 +23,15 @@ class CarGridViewWidget extends StatelessWidget {
             children: [
               const Text(
                 "Popular Cars",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               TextButton(
                 onPressed: () {},
                 child: const Text(
                   "View all",
                   style: TextStyle(
-                      color: Color.fromRGBO(46, 163, 102, 1),
-                      fontSize: 16,
+                      color: Color.fromRGBO(220, 220, 220, 1),
+                      fontSize: 14,
                       fontWeight: FontWeight.w400),
                 ),
               )
@@ -53,7 +57,10 @@ class CarGridViewWidget extends StatelessWidget {
                 return GridView.builder(
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 0.0,
+                    childAspectRatio: 0.9,
+                  ),
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return CarCardWidget(car: snapshot.data![index]);

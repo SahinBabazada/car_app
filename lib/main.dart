@@ -16,7 +16,7 @@ class Car extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           useMaterial3: true,
-          scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1)),
+          scaffoldBackgroundColor: const Color.fromRGBO(243, 245, 247, 1)),
       home: const HomeScreen(),
     );
   }

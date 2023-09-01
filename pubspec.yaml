@@ -37,7 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio:
   http: ^1.1.0
-
+  font_awesome_flutter: ^10.5.0
+  line_icons: ^2.0.3
+  ionicons: ^0.2.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
