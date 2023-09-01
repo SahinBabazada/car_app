@@ -29,7 +29,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
               color: Colors.white,
               size: 18,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         title: const Text(
@@ -71,42 +73,64 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Tesla Model 3"),
+                      Text(
+                        '${widget.car.make} ${widget.car.model}',
+                        style: const TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       Row(
-                        children: [Icon(Icons.star), Text("4.5")],
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Color.fromRGBO(251, 177, 74, 1),
+                            size: 20,
+                          ),
+                          Text(
+                            "(${widget.car.displacement})",
+                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                          )
+                        ],
                       )
                     ],
                   ),
-                  Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-                      style: TextStyle(),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      textAlign: TextAlign.justify),
-                  Text(
-                    'Features',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  Container(
+                    margin: const EdgeInsets.only(top: 20, bottom: 10),
+                    child: const Text(
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+                        style: TextStyle(color: Colors.black45),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        textAlign: TextAlign.justify),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 10, bottom: 20),
+                    child: const Text(
+                      'Features',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       FeaturesCard(
-                        text: 'Total Capacity',
-                        text2: '6 Seats',
-                        icon: Icon(Icons.search),
+                        text: 'Total Cylinders',
+                        text2: '${widget.car.cylinders} Cylinders',
+                        icon: const Icon(Icons.search),
                       ),
-                      FeaturesCard(
+                      const FeaturesCard(
                         text: 'Highest Speed',
                         text2: '200 KM/H',
                         icon: Icon(Ionicons.speedometer_outline),
                       ),
-                      FeaturesCard(
+                      const FeaturesCard(
                         text: 'Engine Output',
                         text2: '500 HP',
                         icon: FaIcon(FontAwesomeIcons.horse),
@@ -120,11 +144,35 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         ]),
       ),
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        margin: const EdgeInsets.all(20), 
-        child: const Row(
+        color: Colors.white,
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Price",
+                    style: TextStyle(color: Colors.black87, fontSize: 12)),
+                Text("\$45,590",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 16))
+              ],
+            ),
+            TextButton(
+                style: IconButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 3, 3, 3),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 60)),
+                onPressed: () {},
+                child: const Text(
+                  "Buy now",
+                  style: TextStyle(color: Colors.white),
+                ))
           ],
         ),
       ),

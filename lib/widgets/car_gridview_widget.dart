@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import '../services/get_cars.dart';
 
 class CarGridViewWidget extends StatelessWidget {
+  final String carName;
   const CarGridViewWidget({
-    super.key,
+    super.key, required this.carName,
   });
 
   @override
@@ -38,7 +39,7 @@ class CarGridViewWidget extends StatelessWidget {
             ],
           ),
           FutureBuilder(
-              future: getCars("merc", limit: 10),
+              future: getCars(carName, limit: 10),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -56,6 +57,7 @@ class CarGridViewWidget extends StatelessWidget {
 
                 return GridView.builder(
                   shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 0.0,
